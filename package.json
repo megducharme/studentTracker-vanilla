@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.19.4"
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1"
   }
 }
