@@ -14,7 +14,7 @@ $(document).ready(function () {
         students.forEach(currentStudent => {
             $.ajax({
                 type: "GET",
-                url: `http://localhost:6060/student/commit/https://api.github.com/users/${currentStudent.githubHandle}/events`,
+                url: `https://student-github-tracker.heroku.com/student/commit/https://api.github.com/users/${currentStudent.githubHandle}/events`,
                 success: function (data) {
                     let lastCommit = data.find(event => {
                         return event.type === "PushEvent"
@@ -24,7 +24,7 @@ $(document).ready(function () {
                     let studentData = {}
                     studentData.student = currentStudent
     
-                    let lastPush = new Date((lastCommit.created_at))
+                    let lastPush = new Date(lastCommit.created_at)
                     let today = new Date(Date.now())
                     studentData.diffDays = parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago"
     
