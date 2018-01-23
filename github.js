@@ -14,8 +14,9 @@ $(document).ready(function () {
         students.forEach(currentStudent => {
             $.ajax({
                 type: "GET",
-                url: `https://student-github-tracker.heroku.com/student/commit/https://api.github.com/users/${currentStudent.githubHandle}/events`,
+                url: `https://spyproxy.bangazon.com/student/commit/https://api.github.com/users/${currentStudent.githubHandle}/events`,
                 success: function (data) {
+                    console.log(data)
                     let lastCommit = data.find(event => {
                         return event.type === "PushEvent"
                     })
