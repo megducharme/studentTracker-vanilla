@@ -54,7 +54,7 @@ $(document).ready(function () {
                 <p class="${student.color}">Last push was ${student.diffDays}</p>
                 <p>${student.repo}</p>
                 <p>"${student.message}"</p>
-                <a href="https://github.com/${student.student.githubHandle}">Go to their repo</a>
+                <a href="https://github.com/${student.student.githubHandle}/${student.repo}">Go to their repo</a>
             </div>
         </div>
         <hr>`
