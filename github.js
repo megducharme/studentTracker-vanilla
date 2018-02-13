@@ -3,15 +3,10 @@ $(document).ready(function () {
     let students;
     let cohort;
 
-    document.getElementById("c22").addEventListener("click", function(){
+    document.getElementById("classBtn").addEventListener("click", function(){
+        let jsonAddress = event.target.id
         document.getElementById("output").innerHTML = ""
-        cohort = "./c22.json"
-        getStudentData()
-    })
-
-    document.getElementById("c23").addEventListener("click", function(){
-        document.getElementById("output").innerHTML = ""
-        cohort = "./c23.json"
+        cohort = `./${jsonAddress}.json`
         getStudentData()
     })
     
