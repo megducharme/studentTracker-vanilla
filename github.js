@@ -4,11 +4,13 @@ $(document).ready(function () {
     let cohort;
 
     document.getElementById("c22").addEventListener("click", function(){
+        document.getElementById("output").innerHTML = ""
         cohort = "./c22.json"
         getStudentData()
     })
 
     document.getElementById("c23").addEventListener("click", function(){
+        document.getElementById("output").innerHTML = ""
         cohort = "./c23.json"
         getStudentData()
     })
