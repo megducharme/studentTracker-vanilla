@@ -1,10 +1,19 @@
 $(document).ready(function () {
 
     let students;
+    let cohort;
+
+    document.getElementById("c22").addEventListener("click", function(){
+        cohort = "./c22.json"
+    })
+
+    document.getElementById("c23").addEventListener("click", function(){
+        cohort = "./c23.json"
+    })
     
     $.ajax({
         type: "GET",
-        url: "./c22.json"
+        url: cohort
     })
     .then(data => {
         students = data
