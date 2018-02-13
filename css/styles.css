@@ -12,9 +12,14 @@
 
 .center {
     text-align: center;
+    margin: 10px;
 }
 
-button{
+div {
     display: inline-block;
     text-align: center;
+}
+
+button {
+    margin: 10px;
 }
