@@ -3,7 +3,7 @@ $(document).ready(function () {
     let students;
     let cohort;
 
-    document.getElementById("classBtn").addEventListener("click", function(){
+    document.getElementById("classBtn").addEventListener("click", function(event){
         let jsonAddress = event.target.id
         document.getElementById("output").innerHTML = ""
         cohort = `./${jsonAddress}.json`
@@ -66,8 +66,7 @@ $(document).ready(function () {
                 <p>"${student.message}"</p>
                 <a href="https://github.com/${student.student.githubHandle}/${student.repo}">Go to their repo</a>
             </div>
-        </div>
-        <hr>`
+        </div>`
     }
 
 })
