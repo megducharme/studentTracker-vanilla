@@ -26,7 +26,7 @@ $(document).ready(function () {
                     url: `https://spyproxy.bangazon.com/student/commit/https://api.github.com/users/${currentStudent.githubHandle}/events`,
                     success: function (data) {
                         console.log(data)
-                        let pushEvent = data.filter(event => {
+                        let pushEvent = data.find(event => {
                             return event.type === "PushEvent" 
                         })
                         
