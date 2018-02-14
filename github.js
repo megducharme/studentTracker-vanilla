@@ -26,9 +26,11 @@ $(document).ready(function () {
                     url: `https://spyproxy.bangazon.com/student/commit/https://api.github.com/users/${currentStudent.githubHandle}/events`,
                     success: function (data) {
                         console.log(data)
-                        let lastCommit = data.filter(event => {
+                        let pushEvent = data.filter(event => {
                             return event.type === "PushEvent" 
-                        }).find(commit => {
+                        })
+                        
+                        let lastCommit = pushEvent.payload.commits.find(commit => {
                             return commit.distinct == true
                         })
                         console.log(lastCommit)
@@ -36,12 +38,12 @@ $(document).ready(function () {
                         let studentData = {}
                         studentData.student = currentStudent
         
-                        let lastPush = new Date(lastCommit.created_at)
+                        let lastPush = new Date(pushEvent.created_at)
                         let today = new Date(Date.now())
                         studentData.diffDays = parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago"
         
-                        studentData.repo = lastCommit.repo.name.split("/")[1]
-                        studentData.message = lastCommit.payload.commits[0].message
+                        studentData.repo = pushEvent.repo.name.split("/")[1]
+                        studentData.message = lastCommit.message
         
                         studentData.color = "red"
         
