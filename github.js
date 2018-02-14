@@ -40,10 +40,12 @@ $(document).ready(function () {
                         let lastPush = new Date(pushEvent.created_at)
                         let today = new Date(Date.now())
                         studentData.diffDays = parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago"
+
+                        let commitRepo = pushEvent.repo.url
         
                         studentData.repo = pushEvent.repo.name.split("/")[1]
                         studentData.message = lastCommit.message
-                        studentData.event = pushEvent
+                        studentData.eventRepo = commitRepo.split("repos/")[1]
         
                         studentData.color = "red"
         
@@ -66,9 +68,9 @@ $(document).ready(function () {
             <div class="card-body">
                 <h4>${student.student.name}</h4>
                 <p class="${student.color}">Last push was ${student.diffDays}</p>
-                <a href="${student.event.repo.url}"><p style="color:black;">${student.repo}</p></a>
+                <a href="https://github.com/${student.eventRepo}"><p style="color:black;">${student.repo}</p></a>
                 <p>"${student.message}"</p>
-                <a href="https://github.com/${student.student.githubHandle}">Student's</a>
+                <a href="https://github.com/${student.student.githubHandle}">Student's Repo</a>
             </div>
         </div>`
     }
