@@ -25,7 +25,7 @@ $(document).ready(function () {
                     type: "GET",
                     url: `https://spyproxy.bangazon.com/student/commit/https://api.github.com/users/${currentStudent.githubHandle}/events`,
                     success: function (data) {
-                        console.log(data)
+                        
                         let pushEvent = data.find(event => {
                             return event.type === "PushEvent" 
                         })
@@ -33,7 +33,6 @@ $(document).ready(function () {
                         let lastCommit = pushEvent.payload.commits.find(commit => {
                             return commit.distinct == true
                         })
-                        console.log(lastCommit)
 
                         let studentData = {}
                         studentData.student = currentStudent
