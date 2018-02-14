@@ -43,6 +43,7 @@ $(document).ready(function () {
         
                         studentData.repo = pushEvent.repo.name.split("/")[1]
                         studentData.message = lastCommit.message
+                        studentData.event = pushEvent
         
                         studentData.color = "red"
         
@@ -65,9 +66,9 @@ $(document).ready(function () {
             <div class="card-body">
                 <h4>${student.student.name}</h4>
                 <p class="${student.color}">Last push was ${student.diffDays}</p>
-                <p>${student.repo}</p>
+                <a href="https://github.com/${student.pushEvent.repo.url}"><p>${student.repo}</p></a>
                 <p>"${student.message}"</p>
-                <a href="https://github.com/${student.student.githubHandle}/${student.repo}">Go to their repo</a>
+                <a href="https://github.com/${student.student.githubHandle}">Go to their repo</a>
             </div>
         </div>`
     }
