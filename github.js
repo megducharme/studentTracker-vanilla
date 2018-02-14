@@ -66,7 +66,7 @@ $(document).ready(function () {
             <div class="card-body">
                 <h4>${student.student.name}</h4>
                 <p class="${student.color}">Last push was ${student.diffDays}</p>
-                <a href="https://github.com/${student.pushEvent.repo.url}"><p>${student.repo}</p></a>
+                <a href="https://github.com/${student.event.repo.url}"><p>${student.repo}</p></a>
                 <p>"${student.message}"</p>
                 <a href="https://github.com/${student.student.githubHandle}">Go to their repo</a>
             </div>
