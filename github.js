@@ -64,15 +64,13 @@ $(document).ready(function () {
     function printToDOM(student){
 
         document.getElementById("output").innerHTML += `
-        <div class="card center" style="width:335px; margin-left:38%; coloumn: 2;">
-            <div class="card-body">
+            <div class="center" style="width:335px; margin-left:38%; coloumn: 2;">
                 <h4>${student.student.name}</h4>
                 <p class="${student.color}">Last push was ${student.diffDays}</p>
                 <a href="https://github.com/${student.eventRepo}"><p style="color:black;">${student.repo}</p></a>
                 <p>"${student.message}"</p>
                 <a href="https://github.com/${student.student.githubHandle}">Student's Repo</a>
-            </div>
-        </div>`
+            </div>`
     }
 
 })
