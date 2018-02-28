@@ -79,10 +79,9 @@ $(document).ready(function () {
                                 break;
                             case 2 + " days ago":
                             case 3 + " days ago":
-                            case 3 + " days ago":
                                 studentData.color = "orange"
                                 break;
-                            case 4 + " days ago":
+                            case studentData.diffDays >= 4 + " days ago":
                                 studentData.color = "red"
                                 break;
                         }
