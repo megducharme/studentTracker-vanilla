@@ -81,7 +81,7 @@ $(document).ready(function () {
                             case 3 + " days ago":
                                 studentData.color = "orange"
                                 break;
-                            case studentData.diffDays >= 4 + " days ago":
+                            default:
                                 studentData.color = "red"
                                 break;
                         }
