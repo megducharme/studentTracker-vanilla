@@ -57,14 +57,13 @@ $(document).ready(function () {
 
                         let lastPush = new Date(pushEvent.created_at)
                         let today = new Date(Date.now())
-                        let commitRepo = pushEvent.repo.url
 
                         let studentData = {
                             name: studentName.name,
                             githubHandle: pushEvent.actor.login,
                             repo: pushEvent.repo.name.split("/")[1],
                             message: pushEvent.payload.commits[pushEvent.payload.commits.length - 1].message,
-                            repoURL: commitRepo.split("repos/")[1],
+                            repoURL: pushEvent.repo.url.split("repos/")[1],
                             diffDays: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago",
                             color: "red",
                             event: event
@@ -107,29 +106,28 @@ $(document).ready(function () {
 
 
     function printToDOM(student) {
+        stringToDOM += `
+            <div class="card center col">
+            <div class="card-body">
+            <h4>${student.name}</h4>`
 
         if(student.event === "fork"){
-            stringToDOM += `
-                <div class="card center col">
-                    <div class="card-body">
-                        <h4>${student.name}</h4>
-                        <p class="${student.color}">Forked a repo ${student.diffDays}</p>
-                        <a href="https://github.com/${student.repoURL}"><p style="color:black;">${student.repo}</p></a>
-                        <a href="https://github.com/${student.githubHandle}">Student's Repo</a>
-                    </div>
-                </div>`
+            stringToDOM += 
+            `<p class="${student.color}">Forked a repo ${student.diffDays}</p>
+            <a href="https://github.com/${student.repoURL}" target="_blank"><p style="color:black;">${student.repo}`
+
         } else {
-            stringToDOM += `
-                <div class="card center col">
-                    <div class="card-body">
-                        <h4>${student.name}</h4>
-                        <p class="${student.color}">Pushed to GitHub ${student.diffDays}</p>
-                        <a href="https://github.com/${student.repoURL}"><p style="color:black;">${student.repo}</p></a>
-                        <p>"${student.message}"</p>
-                        <a href="https://github.com/${student.githubHandle}">Student's Repo</a>
-                    </div>
-                </div>`
+            stringToDOM +=
+            `<p class="${student.color}">Pushed to GitHub ${student.diffDays}</p>
+            <a href="https://github.com/${student.repoURL}" target="_blank"><p style="color:black;">${student.repo}`
         }
+
+        stringToDOM += 
+            `</p></a>
+            <p>"${student.message}"</p>
+            <a href="https://github.com/${student.githubHandle}" target="_blank">Student's Repo</a>
+            </div>
+            </div>`
 
 
         document.getElementById("output").innerHTML = stringToDOM
