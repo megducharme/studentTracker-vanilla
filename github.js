@@ -65,13 +65,17 @@ $(document).ready(function () {
                             message: pushEvent.payload.commits[pushEvent.payload.commits.length - 1].message,
                             repoURL: pushEvent.repo.url.split("repos/")[1],
                             diffDays: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago",
-                            color: "red",
+                            color: "orange",
                             event: event
                         }
 
                         if (studentData.diffDays === 0 + " days ago") {
                             studentData.diffDays = "today"
                             studentData.color = "green"
+                        }
+
+                        if (studentData.diffDays <= 4 + " days ago" && studentData.diffDays != 0 + " days ago") {
+                            studentData.color = "orange"
                         }
 
                         if(data[0].type === "ForkEvent"){
