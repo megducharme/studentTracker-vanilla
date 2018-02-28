@@ -18,3 +18,40 @@
 button {
     margin: 10px;
 }
+
+@media (max-width: 996px) {
+    .col {
+        width: 100%
+    }
+    .col h4{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 770px) {
+    .card {
+        padding: 0px;
+        margin: 0px;
+
+    }
+}
+
+.class-buttons {
+    display:flex;
+    justify-content: center;
+}
+
+.loader-gif {
+    display: flex;
+    justify-content: center;
+    margin-top:20px;
+}
+
+.loader-gif2 {
+    display: flex;
+    justify-content: center;
+}
+
+#output {
+    margin: 20px;
+}
