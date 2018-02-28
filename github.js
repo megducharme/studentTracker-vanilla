@@ -77,7 +77,7 @@ $(document).ready(function () {
                                 break;
                             case 2 + " days ago":
                             case 3 + " days ago":
-                                studentData.color = "orange"
+                                studentData.color = "yellow"
                                 break;
                             default:
                                 studentData.color = "red"
