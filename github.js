@@ -3,18 +3,14 @@ $(document).ready(function () {
     $(".loader-gif2").hide()
     $(".loader-gif").show()
 
-    let students;
-    let cohort;
-    let stringToDOM = ""
-
     document.getElementById("classBtn").addEventListener("click", function (event) {
         let jsonAddress = event.target.id
         document.getElementById("output").innerHTML = ""
-        cohort = `./${jsonAddress}.json`
-        getStudentData()
+        let cohort = `./${jsonAddress}.json`
+        getStudentData(cohort)
     })
 
-    function getStudentData() {
+    function getStudentData(cohort) {
         $(".loader-gif").hide()
         $(".loader-gif2").show()
 
@@ -23,14 +19,14 @@ $(document).ready(function () {
                 url: cohort
             })
             .then(data => {
-                students = data
+                let students = data
                 return students
             })
             .then(students => {
                 let counter = 0;
                 const arrayOfPromises = []
                 let allStudents = []
-                stringToDOM = ""
+                let stringToDOM = ""
 
                 //create promise for each ajax call to get student's latest github events
                 students.forEach(student => {
@@ -110,7 +106,7 @@ $(document).ready(function () {
                         }
 
                         counter++
-                        printToDOM(student)
+                        printToDOM(student, stringToDOM)
                     })
                 })
 
@@ -118,7 +114,7 @@ $(document).ready(function () {
     }
 
 
-    function printToDOM(student) {
+    function printToDOM(student, stringToDOM) {
         stringToDOM += `
             <div class="card center col">
             <div class="card-body">
