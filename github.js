@@ -3,6 +3,8 @@ $(document).ready(function () {
     $(".loader-gif2").hide()
     $(".loader-gif").show()
 
+    let stringToDOM = "";
+
     document.getElementById("classBtn").addEventListener("click", function (event) {
         let jsonAddress = event.target.id
         document.getElementById("output").innerHTML = ""
@@ -26,7 +28,7 @@ $(document).ready(function () {
                 let counter = 0;
                 const arrayOfPromises = []
                 let allStudents = []
-                let stringToDOM = ""
+                stringToDOM = ""
 
                 //create promise for each ajax call to get student's latest github events
                 students.forEach(student => {
@@ -106,7 +108,7 @@ $(document).ready(function () {
                         }
 
                         counter++
-                        printToDOM(student, stringToDOM)
+                        printToDOM(student)
                     })
                 })
 
@@ -114,7 +116,7 @@ $(document).ready(function () {
     }
 
 
-    function printToDOM(student, stringToDOM) {
+    function printToDOM(student) {
         stringToDOM += `
             <div class="card center col">
             <div class="card-body">
