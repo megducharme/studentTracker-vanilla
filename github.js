@@ -118,7 +118,7 @@ $(document).ready(function () {
 
 
     function printToDOM(student) {
-        let event = (student.event === "fork") ? "Pushed to GitHub " : "Forked a repo "
+        let event = (student.event === "fork") ? "Forked a repo " : "Pushed to GitHub "
 
         stringToDOM += `
             <div class="card center col">
