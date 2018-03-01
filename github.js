@@ -66,7 +66,7 @@ $(document).ready(function () {
                             event: event
                         }
 
-                        switch(studentData.diffDays){
+                        switch (studentData.diffDays) {
                             case 0 + " days ago":
                                 studentData.diffDays = "today"
                                 studentData.color = "green"
@@ -85,9 +85,10 @@ $(document).ready(function () {
                         }
 
 
-                        if(data[0].type === "ForkEvent"){
+                        if (data[0].type === "ForkEvent") {
                             studentData.event = "fork"
                             studentData.repo = data[0].repo.name.split("/")[1]
+                            studentData.message = ""
                         }
 
                         allStudents.push(studentData)
@@ -117,27 +118,21 @@ $(document).ready(function () {
 
 
     function printToDOM(student) {
-        stringToDOM += `
-            <div class="card center col">
-            <div class="card-body">
-            <h4>${student.name}</h4>`
+        let event = "Pushed to GitHub "
 
-        if(student.event === "fork"){
-            stringToDOM += 
-            `<p class="${student.color}">Forked a repo ${student.diffDays}</p>
-            <a href="https://github.com/${student.repoURL}" target="_blank"><p style="color:black;">${student.repo}`
-
-        } else {
-            stringToDOM +=
-            `<p class="${student.color}">Pushed to GitHub ${student.diffDays}</p>
-            <a href="https://github.com/${student.repoURL}" target="_blank"><p style="color:black;">${student.repo}`
+        if (student.event === "fork") {
+            event = "Forked a repo "
         }
 
-        stringToDOM += 
-            `</p></a>
-            <p>"${student.message}"</p>
-            <a href="https://github.com/${student.githubHandle}" target="_blank">Student's Repo</a>
-            </div>
+        stringToDOM += `
+            <div class="card center col">
+                <div class="card-body">
+                    <h4>${student.name}</h4>
+                    <p class="${student.color}">${event} ${student.diffDays}</p>
+                    <a href="https://github.com/${student.repoURL}"><p style="color:black;">${student.repo}</p></a>
+                    <p>"${student.message}"</p>
+                    <a href="https://github.com/${student.githubHandle}">Student's Repo</a>
+                </div>
             </div>`
 
 
