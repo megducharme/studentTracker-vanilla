@@ -6,6 +6,7 @@ $(document).ready(function () {
     let stringToDOM = "";
 
     $("#classBtn").on("click", function (event) {
+        let jsonAddress = event.target.id
         if(jsonAddress.startsWith("c__")){
             $("#output").html("")
             let cohort = `./${jsonAddresssplit("__")[1]}.json`
