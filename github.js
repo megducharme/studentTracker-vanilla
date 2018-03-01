@@ -5,9 +5,9 @@ $(document).ready(function () {
 
     let stringToDOM = "";
 
-    document.getElementById("classBtn").addEventListener("click", function (event) {
+    $("#classBtn").on("click", function (event) {
         let jsonAddress = event.target.id
-        document.getElementById("output").innerHTML = ""
+        $("#output").html("")
         let cohort = `./${jsonAddress}.json`
         getStudentData(cohort)
     })
@@ -132,7 +132,7 @@ $(document).ready(function () {
             </div>`
 
 
-        document.getElementById("output").innerHTML = stringToDOM
+        $("#output").html(stringToDOM)
     }
 
 })
