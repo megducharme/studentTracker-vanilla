@@ -133,7 +133,7 @@ $(document).ready(function () {
                     <p class="${student.color}">${event} ${student.diffDays}</p>
                     <a href="https://github.com/${student.repoURL}" target="_blank"><p style="color:black;">${student.repo}</p></a>
                     <p>"${student.message}"</p>
-                    <a href="https://github.com/${student.githubHandle} target="_blank"">Student's Repo</a>
+                    <a href="https://github.com/${student.githubHandle}" target="_blank">Student's Repo</a>
                 </div>
             </div>`
 
