@@ -7,6 +7,7 @@ $(document).ready(function () {
 
     $("#classBtn").on("click", function (event) {
         let jsonAddress = event.target.id
+        console.log("jsonAddress", jsonAddress)
         if(jsonAddress.startsWith("c")){
             $("#output").html("")
             let cohort = `./${jsonAddress}.json`
