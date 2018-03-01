@@ -88,7 +88,7 @@ $(document).ready(function () {
                         if (data[0].type === "ForkEvent") {
                             studentData.event = "fork"
                             studentData.repo = data[0].repo.name.split("/")[1]
-                            studentData.message = ""
+                            studentData.message = "-"
                         }
 
                         allStudents.push(studentData)
@@ -129,7 +129,7 @@ $(document).ready(function () {
                 <div class="card-body">
                     <h4>${student.name}</h4>
                     <p class="${student.color}">${event} ${student.diffDays}</p>
-                    <a href="https://github.com/${student.repoURL}"><p style="color:black;">${student.repo}</p></a>
+                    <a href="https://github.com/${student.repoURL}" target="_blank"><p style="color:black;">${student.repo}</p></a>
                     <p>"${student.message}"</p>
                     <a href="https://github.com/${student.githubHandle}">Student's Repo</a>
                 </div>
