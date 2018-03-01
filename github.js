@@ -7,9 +7,11 @@ $(document).ready(function () {
 
     $("#classBtn").on("click", function (event) {
         let jsonAddress = event.target.id
-        $("#output").html("")
-        let cohort = `./${jsonAddress}.json`
-        getStudentData(cohort)
+        if(jsonAddress.startsWith("c")){
+            $("#output").html("")
+            let cohort = `./${jsonAddress}.json`
+            getStudentData(cohort)
+        }
     })
 
     function getStudentData(cohort) {
@@ -30,7 +32,7 @@ $(document).ready(function () {
                 let allStudents = []
                 stringToDOM = ""
 
-                //create promise for each ajax call to get student's latest github events
+                //an ajax call is created for each student in the json file and pushed to the arrayofPromises
                 students.forEach(student => {
                     arrayOfPromises.push(
                         $.ajax({
@@ -40,7 +42,6 @@ $(document).ready(function () {
                     )
                 })
 
-                //get all data and then parse it and build up studentData objects
                 Promise.all(arrayOfPromises).then(responses => {
                     responses.forEach(data => {
 
@@ -94,7 +95,6 @@ $(document).ready(function () {
                         allStudents.push(studentData)
                     })
 
-                    //hide the loading dude before printing student cards to the page
                     $(".loader-gif2").hide()
 
                     //loop over studentData objects and print them to the page in a boostrap grid - the row divs clearly caused me issues
