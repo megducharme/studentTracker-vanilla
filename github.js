@@ -9,7 +9,7 @@ $(document).ready(function () {
         let jsonAddress = event.target.id
         if(jsonAddress.startsWith("c__")){
             $("#output").html("")
-            let cohort = `./${jsonAddresssplit("__")[1]}.json`
+            let cohort = `./${jsonAddress.split("__")[1]}.json`
             getStudentData(cohort)
         }
     })
