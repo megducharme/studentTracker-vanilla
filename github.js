@@ -72,6 +72,7 @@ $(document).ready(function () {
                             studentData.event = "fork"
                             studentData.repo = data[0].repo.name.split("/")[1]
                             studentData.message = "None"
+                            studentData.repoURL = data[0].repo.url.split("repos/")[1]
                         }
 
                         switch (studentData.diffDays) {
@@ -132,7 +133,7 @@ $(document).ready(function () {
                     <p class="${student.color}">${event} ${student.diffDays}</p>
                     <a href="https://github.com/${student.repoURL}" target="_blank"><p style="color:black;">${student.repo}</p></a>
                     <p>"${student.message}"</p>
-                    <a href="https://github.com/${student.githubHandle}">Student's Repo</a>
+                    <a href="https://github.com/${student.githubHandle} target="_blank"">Student's Repo</a>
                 </div>
             </div>`
 
