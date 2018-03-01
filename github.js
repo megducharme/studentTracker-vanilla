@@ -60,7 +60,7 @@ $(document).ready(function () {
                             name: studentName.name,
                             githubHandle: pushEvent.actor.login,
                             repo: pushEvent.repo.name.split("/")[1],
-                            message: pushEvent.payload.commits[pushEvent.payload.commits.length - 1].message,
+                            message: `"${pushEvent.payload.commits[pushEvent.payload.commits.length - 1].message}"`,
                             repoURL: pushEvent.repo.url.split("repos/")[1],
                             diffDays: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago",
                         }
@@ -70,7 +70,7 @@ $(document).ready(function () {
                             studentData.diffDays = parseInt((today - forkDate) / (1000 * 60 * 60 * 24)) + " days ago"
                             studentData.event = "fork"
                             studentData.repo = data[0].repo.name.split("/")[1]
-                            studentData.message = "None"
+                            studentData.message = "-"
                             studentData.repoURL = data[0].repo.url.split("repos/")[1]
                         }
 
@@ -126,7 +126,7 @@ $(document).ready(function () {
                     <h4>${student.name}</h4>
                     <p class="${student.color}">${event} ${student.diffDays}</p>
                     <a href="https://github.com/${student.repoURL}" target="_blank"><p style="color:black;">${student.repo}</p></a>
-                    <p>"${student.message}"</p>
+                    <p>${student.message}</p>
                     <a href="https://github.com/${student.githubHandle}" target="_blank">Student's Repo</a>
                 </div>
             </div>`
