@@ -43,7 +43,6 @@ $(document).ready(function () {
                 //get all data and then parse it and build up studentData objects
                 Promise.all(arrayOfPromises).then(responses => {
                     responses.forEach(data => {
-                        let event = ""
 
                         let pushEvent = data.find(event => {
                             return event.type === "PushEvent"
@@ -63,7 +62,6 @@ $(document).ready(function () {
                             message: pushEvent.payload.commits[pushEvent.payload.commits.length - 1].message,
                             repoURL: pushEvent.repo.url.split("repos/")[1],
                             diffDays: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago",
-                            event: event
                         }
 
                         if (data[0].type === "ForkEvent") {
@@ -120,11 +118,7 @@ $(document).ready(function () {
 
 
     function printToDOM(student) {
-        let event = "Pushed to GitHub "
-
-        if (student.event === "fork") {
-            event = "Forked a repo "
-        }
+        let event = (student.event === "fork") ? "Pushed to GitHub " : "Forked a repo "
 
         stringToDOM += `
             <div class="card center col">
