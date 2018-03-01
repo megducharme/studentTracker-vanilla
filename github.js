@@ -22,10 +22,6 @@ $(document).ready(function () {
                 type: "GET",
                 url: cohort
             })
-            .then(data => {
-                let students = data
-                return students
-            })
             .then(students => {
                 let counter = 0;
                 const arrayOfPromises = []
