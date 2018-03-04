@@ -73,7 +73,7 @@ $(document).ready(function () {
                         }
 
                         allStudents.sort(function(a,b){
-                            return new Date(b.date) - new Date(a.date);
+                            return new Date(a.date) - new Date(b.date);
                         });
 
                         switch (studentData.diffDays) {
