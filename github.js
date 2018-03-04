@@ -56,6 +56,7 @@ $(document).ready(function () {
                             name: studentName.name,
                             githubHandle: pushEvent.actor.login,
                             repo: pushEvent.repo.name.split("/")[1],
+                            date: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)),
                             message: `"${pushEvent.payload.commits[pushEvent.payload.commits.length - 1].message}"`,
                             repoURL: pushEvent.repo.url.split("repos/")[1],
                             diffDays: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago",
@@ -65,10 +66,15 @@ $(document).ready(function () {
                             let forkDate = new Date(data[0].payload.forkee.pushed_at)
                             studentData.diffDays = parseInt((today - forkDate) / (1000 * 60 * 60 * 24)) + " days ago"
                             studentData.event = "fork"
+                            student.date = parseInt((today - forkDate) / (1000 * 60 * 60 * 24))
                             studentData.repo = data[0].repo.name.split("/")[1]
                             studentData.message = "-"
                             studentData.repoURL = data[0].repo.url.split("repos/")[1]
                         }
+
+                        allStudents.sort(function(a,b){
+                            return new Date(b.date) - new Date(a.date);
+                        });
 
                         switch (studentData.diffDays) {
                             case 0 + " days ago":
@@ -92,6 +98,7 @@ $(document).ready(function () {
                     })
 
                     $(".loader-gif2").hide()
+
 
                     //loop over studentData objects and print them to the page in a boostrap grid - the row divs clearly caused me issues
                     allStudents.forEach(student => {
