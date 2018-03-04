@@ -66,7 +66,7 @@ $(document).ready(function () {
                             let forkDate = new Date(data[0].payload.forkee.pushed_at)
                             studentData.diffDays = parseInt((today - forkDate) / (1000 * 60 * 60 * 24)) + " days ago"
                             studentData.event = "fork"
-                            student.date = parseInt((today - forkDate) / (1000 * 60 * 60 * 24))
+                            studentData.date = parseInt((today - forkDate) / (1000 * 60 * 60 * 24))
                             studentData.repo = data[0].repo.name.split("/")[1]
                             studentData.message = "-"
                             studentData.repoURL = data[0].repo.url.split("repos/")[1]
