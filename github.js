@@ -72,10 +72,6 @@ $(document).ready(function () {
                             studentData.repoURL = data[0].repo.url.split("repos/")[1]
                         }
 
-                        allStudents.sort(function(a,b){
-                            return new Date(a.date) - new Date(b.date);
-                        });
-
                         switch (studentData.diffDays) {
                             case 0 + " days ago":
                                 studentData.diffDays = "today"
@@ -96,6 +92,10 @@ $(document).ready(function () {
 
                         allStudents.push(studentData)
                     })
+
+                    allStudents.sort(function(a,b){
+                        return new Date(a.date) - new Date(b.date);
+                    });
 
                     $(".loader-gif2").hide()
 
