@@ -7,6 +7,9 @@ $(document).ready(function () {
     let studentPoints = []
 
     $("#c25").click(function () {
+        $(".loader-gif").hide()
+        $(".loader-gif2").show()
+
         students.forEach(student => {
             arrayOfPromises.push(
                 $.ajax({
@@ -47,6 +50,8 @@ $(document).ready(function () {
 
             console.log(studentPoints)
 
+            $(".loader-gif2").hide()
+
             let counter = 0;
             studentPoints.forEach(student => {
                 if (counter === 0) {
@@ -62,15 +67,14 @@ $(document).ready(function () {
                 printToDom(student)
             })
 
-            $("body").html(output);
+            $("#output").html(output);
         })
 
     });
 
     function printToDom(studentData) {
         output +=
-            `
-            <div class="card center col">
+            `<div class="card center col">
                 <div class="card-body">
                     <strong><h3>${studentData.name}</h3></strong>
                     <div class="navy">
