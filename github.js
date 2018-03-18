@@ -7,6 +7,7 @@ $(document).ready(function () {
     let stringToDOM = "";
 
     $("#classBtn").on("click", function (event) {
+        $("#jsPoints").hide()
         let jsonAddress = event.target.id
         if(jsonAddress.startsWith("c__")){
             $("#output").html("")
