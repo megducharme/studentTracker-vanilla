@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     $(".loader-gif2").hide()
+    $("#jsPoints").hide()
     $(".loader-gif").show()
 
     let stringToDOM = "";

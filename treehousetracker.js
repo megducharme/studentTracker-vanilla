@@ -5,8 +5,14 @@ $(document).ready(function () {
 
     let arrayOfPromises = []
     let studentPoints = []
+    let studentJsPoints = []
 
     $("#c25").click(function () {
+        arrayOfPromises = []
+        studentJsPoints = []
+        studentPoints = []
+        output = ""
+
         $(".loader-gif").hide()
         $(".loader-gif2").show()
 
@@ -44,6 +50,7 @@ $(document).ready(function () {
                 studentPoints.push(studentData)
 
             })
+
             studentPoints.sort(function (a, b) {
                 return b.totalFEpoints - a.totalFEpoints
             });
@@ -51,6 +58,7 @@ $(document).ready(function () {
             console.log(studentPoints)
 
             $(".loader-gif2").hide()
+            $("#jsPoints").show()
 
             let counter = 0;
             studentPoints.forEach(student => {
@@ -97,4 +105,34 @@ $(document).ready(function () {
             </div>
             <br>`
     }
+
+    function sortByJs() { 
+        return studentPoints.slice(0).sort(function (a, b) {
+            return b.jsPoints - a.jsPoints
+        });
+    }
+
+    $("#jsPoints").click(function(){
+        let students = sortByJs()
+        console.log("sort by JS points")
+        console.log("student js points", studentJsPoints)
+        output = ""
+        let counter = 0;
+
+        students.forEach(student => {
+            if (counter === 0) {
+                output += `<div class="row">`
+            }
+
+            if (counter % 4 === 0) {
+                output += `</div>`
+                output += `<div class="row">`
+            }
+
+            counter++
+            printToDom(student)
+        })
+
+        $("#output").html(output);
+    })
 });
