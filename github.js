@@ -9,6 +9,10 @@ $(document).ready(function () {
     $("#classBtn").on("click", function (event) {
         $("#jsPoints").hide()
         let jsonAddress = event.target.id
+        if(jsonAddress === "c22"){
+            $("#output").html("Congratulations - you graduated! 🎓 We miss you 😢")
+            return
+        }
         if(jsonAddress.startsWith("c__")){
             $("#output").html("")
             let cohort = `./c${jsonAddress.split("__")[1]}.json`
