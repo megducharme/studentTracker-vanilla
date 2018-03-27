@@ -9,7 +9,7 @@ $(document).ready(function () {
     $("#classBtn").on("click", function (event) {
         $("#jsPoints").hide()
         let jsonAddress = event.target.id
-        if(jsonAddress === "c22"){
+        if(jsonAddress === "c__22"){
             $("#output").html("Congratulations - you graduated! 🎓 We miss you 😢")
             return
         }
