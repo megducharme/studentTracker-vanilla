@@ -10,7 +10,7 @@ $(document).ready(function () {
         $("#jsPoints").hide()
         let jsonAddress = event.target.id
         if(jsonAddress === "c__22"){
-            $("#output").html("Congratulations - you graduated! 🎓 We miss you 😢")
+            $("#output").html("<h3 class='center'>Congratulations - you graduated! 🎓 We miss you 😢<h3>")
             return
         }
         if(jsonAddress.startsWith("c__")){
