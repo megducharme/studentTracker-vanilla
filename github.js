@@ -7,12 +7,7 @@ $(document).ready(function () {
     let stringToDOM = "";
 
     $("#classBtn").on("click", function (event) {
-        $("#jsPoints").hide()
         let jsonAddress = event.target.id
-        if(jsonAddress === "c__22"){
-            $("#output").html("<h3 class='center'>Congratulations - you graduated! 🎓 We miss you 😢<h3>")
-            return
-        }
         if(jsonAddress.startsWith("c__")){
             $("#output").html("")
             let cohort = `./c${jsonAddress.split("__")[1]}.json`
