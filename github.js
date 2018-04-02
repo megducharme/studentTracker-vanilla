@@ -36,7 +36,9 @@ $(document).ready(function () {
                             type: "GET",
                             url: `https://spyproxy.bangazon.com/student/commit/https://api.github.com/users/${student.githubHandle}/events`
                         }).done(response => {
-                            console.log(student)
+                            if(response.message === "Not found"){
+                                console.log(student)
+                            }
                         })
                     )
                 })
