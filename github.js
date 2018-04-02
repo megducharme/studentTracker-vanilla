@@ -35,6 +35,8 @@ $(document).ready(function () {
                         $.ajax({
                             type: "GET",
                             url: `https://spyproxy.bangazon.com/student/commit/https://api.github.com/users/${student.githubHandle}/events`
+                        }).done(response => {
+                            console.log(student)
                         })
                     )
                 })
@@ -92,7 +94,9 @@ $(document).ready(function () {
                         }
 
                         allStudents.push(studentData)
-                    })
+                    }), err => {
+                        console.error("promise No "+err.index+" failed with ", err);
+                    };
 
                     allStudents.sort(function(a,b){
                         return new Date(a.date) - new Date(b.date);
