@@ -45,60 +45,63 @@ $(document).ready(function () {
 
                 Promise.all(arrayOfPromises).then(responses => {
                     responses.forEach(data => {
-
-                        let pushEvent = data.find(event => {
-                            return event.type === "PushEvent"
+                        try{
+                            let pushEvent = data.find(event => {
+                                return event.type === "PushEvent"
+                            })
+    
+                            let studentName = students.find(student => {
+                                return student.githubHandle === data[0].actor.login
+                            })
+    
+                            let lastPush = new Date(pushEvent.created_at)
+                            let today = new Date(Date.now())
+    
+                            let studentData = {
+                                name: studentName.name,
+                                githubHandle: pushEvent.actor.login,
+                                repo: pushEvent.repo.name.split("/")[1],
+                                date: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)),
+                                message: `"${pushEvent.payload.commits[pushEvent.payload.commits.length - 1].message}"`,
+                                repoURL: pushEvent.repo.url.split("repos/")[1],
+                                diffDays: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago",
+                            }
+    
+                            if (data[0].type === "ForkEvent") {
+                                let forkDate = new Date(data[0].payload.forkee.pushed_at)
+                                studentData.diffDays = parseInt((today - forkDate) / (1000 * 60 * 60 * 24)) + " days ago"
+                                studentData.event = "fork"
+                                studentData.date = parseInt((today - forkDate) / (1000 * 60 * 60 * 24))
+                                studentData.repo = data[0].repo.name.split("/")[1]
+                                studentData.message = "-"
+                                studentData.repoURL = data[0].repo.url.split("repos/")[1]
+                            }
+    
+                            switch (studentData.diffDays) {
+                                case 0 + " days ago":
+                                    studentData.diffDays = "today"
+                                    studentData.color = "green"
+                                    break;
+                                case 1 + " days ago":
+                                    studentData.diffDays = "yesterday"
+                                    studentData.color = "green"
+                                    break;
+                                case 2 + " days ago":
+                                case 3 + " days ago":
+                                    studentData.color = "yellow"
+                                    break;
+                                default:
+                                    studentData.color = "red"
+                                    break;
+                            }
+    
+                            allStudents.push(studentData)
+                        }
+                        catch(err){
+                            allStudents.push(err)
+                        }
                         })
 
-                        let studentName = students.find(student => {
-                            return student.githubHandle === data[0].actor.login
-                        })
-
-                        let lastPush = new Date(pushEvent.created_at)
-                        let today = new Date(Date.now())
-
-                        let studentData = {
-                            name: studentName.name,
-                            githubHandle: pushEvent.actor.login,
-                            repo: pushEvent.repo.name.split("/")[1],
-                            date: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)),
-                            message: `"${pushEvent.payload.commits[pushEvent.payload.commits.length - 1].message}"`,
-                            repoURL: pushEvent.repo.url.split("repos/")[1],
-                            diffDays: parseInt((today - lastPush) / (1000 * 60 * 60 * 24)) + " days ago",
-                        }
-
-                        if (data[0].type === "ForkEvent") {
-                            let forkDate = new Date(data[0].payload.forkee.pushed_at)
-                            studentData.diffDays = parseInt((today - forkDate) / (1000 * 60 * 60 * 24)) + " days ago"
-                            studentData.event = "fork"
-                            studentData.date = parseInt((today - forkDate) / (1000 * 60 * 60 * 24))
-                            studentData.repo = data[0].repo.name.split("/")[1]
-                            studentData.message = "-"
-                            studentData.repoURL = data[0].repo.url.split("repos/")[1]
-                        }
-
-                        switch (studentData.diffDays) {
-                            case 0 + " days ago":
-                                studentData.diffDays = "today"
-                                studentData.color = "green"
-                                break;
-                            case 1 + " days ago":
-                                studentData.diffDays = "yesterday"
-                                studentData.color = "green"
-                                break;
-                            case 2 + " days ago":
-                            case 3 + " days ago":
-                                studentData.color = "yellow"
-                                break;
-                            default:
-                                studentData.color = "red"
-                                break;
-                        }
-
-                        allStudents.push(studentData)
-                    }), err => {
-                        console.error("promise No "+err.index+" failed with ", err);
-                    };
 
                     allStudents.sort(function(a,b){
                         return new Date(a.date) - new Date(b.date);
