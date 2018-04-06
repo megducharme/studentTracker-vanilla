@@ -53,8 +53,13 @@ $(document).ready(function () {
                             let studentName = students.find(student => {
                                 return student.githubHandle === data[0].actor.login
                             })
-    
-                            let lastPush = new Date(pushEvent.created_at)
+                            
+                            try{
+                                let lastPush = new Date(pushEvent.created_at)
+                            } 
+                            catch{
+                                console.log(data[0].actor.login)
+                            }
                             let today = new Date(Date.now())
     
                             let studentData = {
