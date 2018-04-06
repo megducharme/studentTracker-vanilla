@@ -53,13 +53,17 @@ $(document).ready(function () {
                             let studentName = students.find(student => {
                                 return student.githubHandle === data[0].actor.login
                             })
+
+                            let lastPush = null;
                             
+                            //if a student hasn't pushed anything to github, they will not have a push event. Console log their name so the instructor can yell at them
                             try{
-                                let lastPush = new Date(pushEvent.created_at)
+                                lastPush = new Date(pushEvent.created_at)
                             } 
                             catch (error){
-                                console.log(data[0].actor.login)
+                                console.log(studentName)
                             }
+
                             let today = new Date(Date.now())
     
                             let studentData = {
