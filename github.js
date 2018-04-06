@@ -57,7 +57,7 @@ $(document).ready(function () {
                             try{
                                 let lastPush = new Date(pushEvent.created_at)
                             } 
-                            catch{
+                            catch (error){
                                 console.log(data[0].actor.login)
                             }
                             let today = new Date(Date.now())
